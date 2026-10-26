@@ -1,6 +1,8 @@
 import type { TourTheme } from './types'
 
 const img = (name: string) => `/images/tours/${name}.webp`
+/** Large (1440–1600px) destination photos, sharp even on the big home-page tile and full-width theme banners. */
+const large = (name: string) => `/images/hero/${name}.webp`
 
 /**
  * Tour styles (8): Luxury, Signature, Cultural, Family, Honeymoon, Classic, Photography, Tailor-made
@@ -22,7 +24,7 @@ export const themes: TourTheme[] = [
         '酒店等级、舱位与服务均与您商定，并在每份报价中确认。',
       ],
     },
-    image: img('emperor-cruises'),
+    image: large('phu-quoc'),
     seo: {
       title: { en: 'Luxury Tours in Vietnam', zh: '越南高端之旅' },
       description: { en: 'Private luxury journeys across Vietnam with dedicated guides, cars and upscale hotels.', zh: '越南全境私人高端之旅，配备专属导游、专车与高档酒店。' },
@@ -42,7 +44,7 @@ export const themes: TourTheme[] = [
         '每条线路都是成熟的起点，可根据您的日期、人数与酒店等级进行调整。',
       ],
     },
-    image: img('ha-long'),
+    image: large('halong-bay'),
     seo: {
       title: { en: 'Signature Vietnam Tours', zh: '越南精选之旅' },
       description: { en: 'Hand-picked Vietnam itineraries recommended by our local team.', zh: '由我们本地团队推荐的越南精选行程。' },
@@ -62,7 +64,7 @@ export const themes: TourTheme[] = [
         '行程可专注于某一地区，也可从河内一路经顺化、会安到胡志明市。',
       ],
     },
-    image: img('imperial-citadel'),
+    image: large('hue'),
     seo: {
       title: { en: 'Cultural Tours in Vietnam', zh: '越南文化之旅' },
       description: { en: 'Heritage, craft villages and local life tours across Vietnam.', zh: '越南遗产古迹、手工艺村与在地生活之旅。' },
@@ -82,7 +84,7 @@ export const themes: TourTheme[] = [
         '请告诉我们孩子的年龄，我们会推荐合适的节奏与住宿。',
       ],
     },
-    image: img('bay-mau-coconut-forest'),
+    image: large('hoi-an'),
     seo: {
       title: { en: 'Family Tours in Vietnam', zh: '越南家庭之旅' },
       description: { en: 'Family-friendly Vietnam itineraries with easy pacing.', zh: '节奏轻松的越南家庭行程。' },
@@ -122,7 +124,7 @@ export const themes: TourTheme[] = [
         '适合首次到访越南，可缩短、延长或结合海滩度假。',
       ],
     },
-    image: img('hoi-an-9-copy'),
+    image: large('ninh-binh'),
     seo: {
       title: { en: 'Classic Vietnam Tours', zh: '越南经典之旅' },
       description: { en: 'Classic Vietnam itineraries covering the country’s essential sights.', zh: '涵盖越南必游景点的经典行程。' },
@@ -142,7 +144,7 @@ export const themes: TourTheme[] = [
         '我们会安排清晨出发、观景点及充足的停留时间，并可安排熟悉最佳拍摄角度的导游。',
       ],
     },
-    image: img('hoang-su-phi-ha-giang'),
+    image: large('ha-giang'),
     seo: {
       title: { en: 'Photography Tours in Vietnam', zh: '越南摄影之旅' },
       description: { en: 'Vietnam tours planned for photographers: landscapes, people and light.', zh: '为摄影爱好者规划的越南行程：风光、人文与光影。' },

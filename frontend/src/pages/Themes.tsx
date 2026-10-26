@@ -15,7 +15,7 @@ export default function Themes() {
   return (
     <>
       <Seo title={t.themes.title} description={t.themes.intro} path="/tour-themes" />
-      <PageHero image="/images/tours/dulichninhbinhthang12cogidep8.webp" imageAlt={l({ en: 'Boats in Ninh Binh', zh: '宁平游船' })} title={t.themes.title} text={t.themes.intro} crumbs={[{ label: t.nav.themes }]} />
+      <PageHero image="/images/hero/ninh-binh.webp" imageAlt={l({ en: 'Limestone hills and wetlands of Ninh Binh', zh: '宁平的喀斯特山峦与湿地' })} title={t.themes.title} text={t.themes.intro} crumbs={[{ label: t.nav.themes }]} />
 
       <nav aria-label={t.themes.title} className="border-b border-line bg-white">
         <ul className="container-x flex gap-2 overflow-x-auto py-4">

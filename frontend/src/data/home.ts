@@ -29,9 +29,9 @@ export interface HeroBanner {
 }
 
 export const heroBanner: HeroBanner = {
-  image: '/videos/hero-poster.webp',
-  video: { desktop: '/videos/hero-1080.mp4', mobile: '/videos/hero-540.mp4', poster: '/videos/hero-poster.webp' },
-  imageAlt: { en: 'Aerial view of a green river winding through the mountains of Northern Vietnam', zh: '越南北部群山间蜿蜒的碧绿河流航拍' },
+  image: '/videos/hero-sunset-poster.webp',
+  video: { desktop: '/videos/hero-sunset-736.mp4', mobile: '/videos/hero-sunset-640.mp4', poster: '/videos/hero-sunset-poster.webp' },
+  imageAlt: { en: 'Sunset over a mountain peak rising above a sea of clouds', zh: '日落时分，山峰耸立于云海之上' },
   cards: ['halong-bay', 'ninh-binh', 'ha-giang', 'sapa', 'hoi-an', 'hue', 'da-nang', 'phu-quoc'].map((slug) => ({
     slug,
     bg: `/images/hero/${slug}.webp`,

@@ -34,7 +34,7 @@ export function ServicesBlock() {
     <section className="relative isolate overflow-hidden pt-8 pb-16 md:pb-20" aria-labelledby="home-services">
       {/* Faint Ha Long Bay photo behind the cards; fades in from the top so the heading stays on white. */}
       <img
-        src="/images/tours/ha-long.webp"
+        src="/images/hero/halong-bay.webp"
         alt=""
         aria-hidden
         data-no-reveal

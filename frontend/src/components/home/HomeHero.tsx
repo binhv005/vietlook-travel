@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, type FormEvent } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { ArrowRight, MapPin, Search } from 'lucide-react'
+import { ArrowRight, MapPin, Pointer, Search } from 'lucide-react'
 import { citiesOf, getDestination, regions } from '@/data/destinations'
 import { themes } from '@/data/themes'
 import { heroBanner } from '@/data/home'
@@ -239,6 +239,15 @@ export default function HomeHero() {
                     >
                       <Img src={card} alt="" className="absolute inset-0 size-full object-cover transition duration-700 group-hover:scale-110" />
                       <span className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent" aria-hidden />
+                      {/* Tap hint on the first card until the visitor has picked a destination. */}
+                      {!started && j === pos && (
+                        <span className="pointer-events-none absolute top-1/2 left-1/2 grid size-12 -translate-1/2 place-items-center sm:size-14" aria-hidden>
+                          <span className="absolute inset-0 rounded-full bg-white/40 motion-safe:animate-ping" />
+                          <span className="relative grid size-full place-items-center rounded-full bg-white/25 ring-1 ring-white/70 backdrop-blur-sm">
+                            <Pointer className="size-6 text-white drop-shadow motion-safe:animate-tap sm:size-7" />
+                          </span>
+                        </span>
+                      )}
                       <span className="absolute inset-x-3 bottom-3 block text-white">
                         {region && <span className="block text-[0.7rem] text-white/75">{l(region.name)}</span>}
                         <span className="mt-0.5 block font-condensed text-lg leading-tight font-semibold sm:text-xl">{l(d.name)}</span>

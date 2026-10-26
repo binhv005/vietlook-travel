@@ -85,6 +85,13 @@
     80%, 88% { transform: rotate(-16deg); }
     84%, 92% { transform: rotate(16deg); }
   }
+  /* Hero destination card hint: the pointing hand presses down like a tap. */
+  --animate-tap: tap 1.6s ease-in-out infinite;
+  @keyframes tap {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    40% { transform: translate(2px, 4px) scale(0.86); }
+    55% { transform: translate(2px, 4px) scale(0.86); }
+  }
   /* Slow zoom-in on the hero background photo while it is shown (starts at 1 so it matches the card zoom hand-over). */
   --animate-kenburns: kenburns 12s cubic-bezier(0.25, 0.1, 0.25, 1) both;
   @keyframes kenburns {
