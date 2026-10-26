@@ -5,7 +5,7 @@ import type { Vehicle } from '@/data/types'
 import { fmt, useI18n } from '@/i18n'
 import Img from '../ui/Img'
 
-const vnd = (n: number) => `VND ${n.toLocaleString('en-US')}`
+const usd = (n: number) => `USD ${n.toLocaleString('en-US')}`
 
 /** Vehicle card: studio photo on a warm panel, type, typical models, "from" price per trip and a quote link. */
 export default function VehicleCard({ vehicle: v }: { vehicle: Vehicle }) {
@@ -55,9 +55,9 @@ export default function VehicleCard({ vehicle: v }: { vehicle: Vehicle }) {
         )}
         <div className="mt-auto flex items-end justify-between gap-2 pt-4">
           <div className="min-w-0">
-            {v.priceFromVnd != null ? (
+            {v.priceFromUsd != null ? (
               <p className="text-sm whitespace-nowrap text-muted">
-                {t.car.priceFrom} <strong className="text-lg font-extrabold text-[#8a5a00]">{vnd(v.priceFromVnd)}</strong> {t.car.perTrip}
+                {t.car.priceFrom} <strong className="text-lg font-extrabold text-[#8a5a00]">{usd(v.priceFromUsd)}</strong> {t.car.perTrip}
               </p>
             ) : (
               <p className="text-[0.95rem] font-semibold text-muted">{t.common.priceOnRequest}</p>

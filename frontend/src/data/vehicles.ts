@@ -5,7 +5,8 @@ const car = (name: string) => `/images/cars/${name}.webp`
 /**
  * Vehicle categories ("Quản lý loại xe"). Model names and "from" prices
  * follow the layout sample provided; prices are flagged `priceIsSample`
- * and must be confirmed by Vietlook before publishing. Final vehicle, luggage
+ * and must be confirmed by Vietlook before publishing. Prices are in USD, converted
+ * from the sample's VND amounts at 26,000 VND/USD and rounded. Final vehicle, luggage
  * capacity and price are confirmed in each quotation.
  */
 export const vehicles: Vehicle[] = [
@@ -14,7 +15,7 @@ export const vehicles: Vehicle[] = [
     seats: '4',
     name: { en: 'Sedan', zh: '轿车' },
     models: 'Toyota Vios, Hyundai Accent',
-    priceFromVnd: 350000,
+    priceFromUsd: 13,
     priceIsSample: true,
     suitable: { en: 'Solo travellers, couples and small families', zh: '个人、情侣与小家庭' },
     uses: { en: ['Airport transfers', 'City sightseeing', 'Short intercity trips'], zh: ['接送机', '城市观光', '短途城际'] },
@@ -26,7 +27,7 @@ export const vehicles: Vehicle[] = [
     seats: '7',
     name: { en: 'SUV', zh: 'SUV' },
     models: 'Toyota Innova, Mitsubishi Xpander',
-    priceFromVnd: 450000,
+    priceFromUsd: 17,
     priceIsSample: true,
     suitable: { en: 'Families and small groups', zh: '家庭与小团体' },
     uses: { en: ['Airport transfers with more luggage', 'Day trips', 'Multi-day private touring'], zh: ['行李较多的接送机', '一日游', '多日私人包车'] },
@@ -38,7 +39,7 @@ export const vehicles: Vehicle[] = [
     seats: '9',
     name: { en: 'Limousine', zh: '豪华商务车' },
     models: 'Dcar Limousine, Ford Transit Limousine',
-    priceFromVnd: 1000000,
+    priceFromUsd: 38,
     priceIsSample: true,
     suitable: { en: 'VIP guests and small groups wanting extra comfort', zh: '贵宾及追求舒适的小团体' },
     uses: { en: ['VIP airport transfers', 'Intercity trips in comfort', 'Business travel'], zh: ['贵宾接送机', '舒适城际出行', '商务出行'] },
@@ -50,7 +51,7 @@ export const vehicles: Vehicle[] = [
     seats: '16',
     name: { en: 'Van', zh: '商务车' },
     models: 'Ford Transit, Hyundai Solati',
-    priceFromVnd: 700000,
+    priceFromUsd: 27,
     priceIsSample: true,
     suitable: { en: 'Small tour groups and business teams', zh: '小型旅游团与商务团队' },
     uses: { en: ['Group transfers', 'Day excursions', 'Intercity transport'], zh: ['团队接送', '一日游', '城际交通'] },

@@ -104,8 +104,8 @@ export interface Vehicle {
   name: L
   /** Representative models, e.g. "Toyota Vios, Hyundai Accent". Exact model confirmed per booking. */
   models?: string
-  /** Starting price per trip in VND. null/undefined = quoted on request. */
-  priceFromVnd?: number | null
+  /** Starting price per trip in USD. null/undefined = quoted on request. */
+  priceFromUsd?: number | null
   /** True while the price is illustrative and not yet confirmed by Vietlook. */
   priceIsSample?: boolean
   suitable: L
