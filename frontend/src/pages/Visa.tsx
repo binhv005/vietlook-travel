@@ -72,7 +72,7 @@ export default function Visa() {
       {/* Hero: a band with the airport photo under a warm wash, a centred title and doodles, and four staggered photos overlapping its lower edge. */}
       <section className="relative isolate overflow-hidden pt-10 pb-6">
         <div className="absolute inset-x-0 top-0 -z-10 h-[calc(100%-7rem)] overflow-hidden [clip-path:polygon(0_0,100%_0,100%_88%,0_100%)] md:h-[calc(100%-9rem)]" aria-hidden>
-          <img src="/images/tours/airport-pick-up-one-way.webp" alt="" className="size-full object-cover" />
+          <img src="/images/tours/airport-pick-up-one-way.webp" alt="" fetchPriority="high" className="size-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-b from-[#fdebd3]/90 via-[#fdebd3]/85 to-[#fdebd3]/70" />
         </div>
         <Sparkle className="absolute top-16 left-[12%] hidden size-6 text-brand-900 md:block" />

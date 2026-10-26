@@ -2,7 +2,7 @@ import type { Dict } from '@/i18n/en'
 import type { L } from '@/data/types'
 import { citiesOf, regions } from '@/data/destinations'
 import { themes } from '@/data/themes'
-import { blogCategories } from '@/data/posts'
+import { blogCategories } from '@/data/blogCategories'
 
 export interface NavLink {
   label: string

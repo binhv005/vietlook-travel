@@ -5,13 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" href="/images/brand/logo-vietlook.png" />
     <meta name="theme-color" content="#0b1b3a" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preload" as="image" href="/images/brand/logo-vietlook.png" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&family=Lora:wght@500;600;700&family=Oswald:wght@500;600&family=Caveat:wght@500;600&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@600;700&display=swap"
-      rel="stylesheet"
-    />
+    <!-- Latin fonts are self-hosted (src/fonts.ts). Chinese fonts are huge, so /zh pages get the full set and other
+         pages only the glyphs of the "中文" language label. Script-inserted, so it never blocks the first paint.
+         Keep in sync with loadChineseFonts() in src/components/layout/Layout.tsx. -->
+    <script>
+      ;(function () {
+        var zh = /^\/zh(\/|$)/.test(location.pathname)
+        var l = document.createElement('link')
+        l.rel = 'stylesheet'
+        l.id = zh ? 'font-zh' : 'font-zh-label'
+        l.href = zh
+          ? 'https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@600;700&display=swap'
+          : 'https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap&text=%E4%B8%AD%E6%96%87'
+        document.head.appendChild(l)
+      })()
+    </script>
     <title>Vietlook Travel Operators</title>
     <!-- Splash: shown on every full page load (not on in-app navigation), removed by src/splash.ts. Inline so it paints before the JS bundle loads. -->
     <script>

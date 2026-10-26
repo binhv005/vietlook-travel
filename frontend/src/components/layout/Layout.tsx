@@ -8,6 +8,16 @@ import ScrollEffects from './ScrollEffects'
 import NoOrphans from './NoOrphans'
 import PageLoader from '../ui/PageLoader'
 
+/** Adds the full Chinese font stylesheet once, e.g. after switching EN → 中文 in-app (index.html covers a direct /zh load). */
+function loadChineseFonts() {
+  if (document.getElementById('font-zh')) return
+  const link = document.createElement('link')
+  link.id = 'font-zh'
+  link.rel = 'stylesheet'
+  link.href = 'https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@600;700&display=swap'
+  document.head.appendChild(link)
+}
+
 /** Locale shell for every public page: /en/... and /zh/... */
 export default function Layout() {
   const { lang } = useParams()
@@ -18,6 +28,10 @@ export default function Layout() {
     window.history.scrollRestoration = 'manual'
     if (!hash) window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
   }, [pathname, hash])
+
+  useLayoutEffect(() => {
+    if (lang === 'zh') loadChineseFonts()
+  }, [lang])
 
   if (!isLang(lang)) return <Navigate to={`/en${pathname}${search}`} replace />
   return (
