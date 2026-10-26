@@ -14,8 +14,8 @@ type Conn = Navigator & { connection?: { saveData?: boolean } }
  * the cards) all of `images` are mounted so they download ahead of time. When the
  * parent passes `image`, that photo cross-fades in, but only after it has fully
  * loaded, so a switch never flashes an empty or half-decoded frame; the shown
- * photo slowly zooms out (Ken Burns). Mobile gets the lighter 540p video. No video
- * is loaded for visitors who prefer reduced motion or have data saving on.
+ * photo slowly zooms out (Ken Burns). Phones get a portrait photo (`mobileImage`) and no video at all;
+ * neither is the video loaded for visitors who prefer reduced motion or have data saving on.
  */
 export default function HeroMedia({
   banner,
@@ -62,7 +62,8 @@ export default function HeroMedia({
   useEffect(() => {
     if (!banner.video) return
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    if (reduce || (navigator as Conn).connection?.saveData) return
+    const phone = !window.matchMedia('(min-width: 768px)').matches
+    if (reduce || phone || (navigator as Conn).connection?.saveData) return
     const el = wrapRef.current
     if (!el) return
     const io = new IntersectionObserver(([entry]) => setInView(entry.isIntersecting), { threshold: 0.5 })
@@ -73,7 +74,7 @@ export default function HeroMedia({
   // Load the file the first time the hero comes into view (unless a destination was already picked).
   useEffect(() => {
     if (inView && !src && !stopped && banner.video) {
-      setSrc(window.matchMedia('(min-width: 768px)').matches ? banner.video.desktop : banner.video.mobile)
+      setSrc(banner.video.src)
     }
   }, [inView, src, stopped, banner.video])
 
@@ -86,7 +87,10 @@ export default function HeroMedia({
 
   return (
     <div ref={wrapRef} className="absolute inset-0 -z-10 overflow-hidden">
-      <Img src={banner.image} alt={l(banner.imageAlt)} priority aria-hidden={shown != null} className="absolute inset-0 size-full object-cover object-center" />
+      <picture>
+        <source media="(max-width: 767px)" srcSet={banner.mobileImage} />
+        <Img src={banner.image} alt={l(banner.imageAlt)} priority aria-hidden={shown != null} className="absolute inset-0 size-full object-cover object-center" />
+      </picture>
       {src && (
         <video
           ref={videoRef}

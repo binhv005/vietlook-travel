@@ -8,8 +8,10 @@ import type { L, LList } from './types'
 export interface HeroBanner {
   /** Fallback / poster image (also used when the visitor prefers reduced motion or data saving). */
   image: string
-  /** Optional background video: compressed H.264 MP4s, muted, looping. Source master kept in /media-source. */
-  video?: { desktop: string; mobile: string; poster: string }
+  /** Phones (below 768px) show this portrait photo instead and never load the video. */
+  mobileImage: string
+  /** Optional background video for tablets/desktops: compressed H.264 MP4, muted, looping. Source master kept in /media-source. */
+  video?: { src: string; poster: string }
   imageAlt: L
   /**
    * Destination cards in the hero (slugs from data/destinations). The card shows `card` and picking it makes `bg`
@@ -30,8 +32,10 @@ export interface HeroBanner {
 
 export const heroBanner: HeroBanner = {
   image: '/videos/hero-sunset-poster.webp',
-  video: { desktop: '/videos/hero-sunset-736.mp4', mobile: '/videos/hero-sunset-640.mp4', poster: '/videos/hero-sunset-poster.webp' },
-  imageAlt: { en: 'Sunset over a mountain peak rising above a sea of clouds', zh: '日落时分，山峰耸立于云海之上' },
+  mobileImage: '/images/hero/sapa-portrait.webp',
+  video: { src: '/videos/hero-sunset-736.mp4', poster: '/videos/hero-sunset-poster.webp' },
+  // Covers both the desktop sunset and the phone photo (Fansipan, Sapa).
+  imageAlt: { en: 'Vietnamese mountains rising above a sea of clouds', zh: '越南群山耸立于云海之上' },
   cards: ['halong-bay', 'ninh-binh', 'ha-giang', 'sapa', 'hoi-an', 'hue', 'da-nang', 'phu-quoc'].map((slug) => ({
     slug,
     bg: `/images/hero/${slug}.webp`,

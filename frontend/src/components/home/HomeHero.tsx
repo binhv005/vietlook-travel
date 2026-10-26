@@ -164,7 +164,8 @@ export default function HomeHero() {
           <img src={zoom.bg} alt="" className="absolute inset-0 size-full object-cover" />
         </div>
       )}
-      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-brand-950/90 via-brand-950/50 to-brand-950/10" aria-hidden />
+      {/* Phones: the text spans the full width over a bright photo, so the right side stays darker too. */}
+      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-brand-950/90 via-brand-950/60 to-brand-950/45 md:via-brand-950/50 md:to-brand-950/10" aria-hidden />
       <div className="absolute inset-x-0 bottom-0 -z-10 h-56 bg-gradient-to-t from-brand-950/70 to-transparent" aria-hidden />
 
       {/* The header floats transparently over the hero (HERO_UNDER_HEADER pads the section by its height: 97/113px,
