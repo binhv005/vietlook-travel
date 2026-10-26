@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="/images/brand/logo-vietlook.png" />
+    <meta name="theme-color" content="#0b1b3a" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" as="image" href="/images/brand/logo-vietlook.png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&family=Lora:wght@500;600;700&family=Oswald:wght@500;600&family=Caveat:wght@500;600&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Vietlook Travel Operators</title>
+    <!-- Splash: shown on every full page load (not on in-app navigation), removed by src/splash.ts. Inline so it paints before the JS bundle loads. -->
+    <script>
+      // The splash only greets a visitor's first visit to the home page (/, /en, /zh); every other
+      // landing page – e.g. a tour page opened from an ad – shows content straight away.
+      ;(function () {
+        var p = location.pathname.replace(/\/+$/, '')
+        var home = p === '' || p === '/en' || p === '/zh'
+        var seen = false
+        try {
+          seen = localStorage.getItem('vl-splash-seen') === '1'
+        } catch (e) {}
+        // While it is visible, page scrolling is locked; the scroll gesture is used to enter instead.
+        document.documentElement.classList.add(home && !seen ? 'splash-lock' : 'no-splash')
+      })()
+    </script>
+    <style>
+      #splash {
+        position: fixed;
+        inset: 0;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+        background: radial-gradient(ellipse 55% 40% at 50% 50%, #1e3a6b 0%, #12264d 45%, #0b1b3a 100%);
+        transition: opacity 0.6s ease, visibility 0.6s ease;
+      }
+      .no-splash #splash { display: none; }
+      .splash-lock, .splash-lock body { overflow: hidden; overscroll-behavior: none; }
+      #splash { cursor: pointer; touch-action: none; }
+      #splash .splash-hint {
+        position: absolute;
+        bottom: max(28px, env(safe-area-inset-bottom));
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        border: 0;
+        background: none;
+        color: #8ea3c7;
+        font: 600 12px / 1 'Be Vietnam Pro', system-ui, sans-serif;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        cursor: pointer;
+        animation: splash-fade 0.8s 0.9s ease both;
+      }
+      #splash .splash-hint svg { width: 22px; height: 22px; animation: splash-bounce 1.6s ease-in-out infinite; }
+      #splash .splash-hint:focus-visible { outline: 2px solid #f39a2b; outline-offset: 6px; border-radius: 6px; }
+      @keyframes splash-bounce { 0%, 100% { transform: translateY(0); opacity: 0.6; } 50% { transform: translateY(6px); opacity: 1; } }
+      #splash.splash-hide { opacity: 0; visibility: hidden; }
+
+      /* Logo (3x the previous size, capped by the viewport) centred above a curved flight path. */
+      #splash .splash-inner { display: flex; flex-direction: column; align-items: center; }
+      #splash .splash-logo {
+        width: min(408px, 62vw, 46vh);
+        aspect-ratio: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        animation: splash-pop 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+      }
+      /* No card behind the logo: the transparent PNG sits straight on the navy, with a soft glow for contrast. */
+      #splash .splash-logo img { width: 100%; height: auto; filter: drop-shadow(0 0 28px rgba(255, 255, 255, 0.18)) drop-shadow(0 18px 40px rgba(0, 0, 0, 0.45)); }
+
+      /* Loader: a plane flying along an arched, dashed route and leaving a red trail. */
+      #splash .splash-route { display: block; width: min(560px, 86vw); height: auto; margin-top: clamp(4px, 2vh, 20px); overflow: visible; }
+      #splash .route-dash { fill: none; stroke: rgba(143, 168, 210, 0.35); stroke-width: 2; stroke-dasharray: 6 7; }
+      #splash .route-trail {
+        fill: none;
+        stroke: url(#splash-trail-grad);
+        stroke-width: 2.5;
+        stroke-linecap: round;
+        stroke-dasharray: 1 1;
+        stroke-dashoffset: 1;
+        animation: splash-draw 3s cubic-bezier(0.45, 0, 0.25, 1) forwards;
+      }
+      #splash .route-plane { color: #f1f4f9; filter: drop-shadow(0 2px 6px rgba(236, 47, 53, 0.6)); }
+      @keyframes splash-draw { to { stroke-dashoffset: 0; } }
+      @keyframes splash-pop { from { opacity: 0; transform: scale(0.85); } to { opacity: 1; transform: none; } }
+      @keyframes splash-fade { from { opacity: 0; } to { opacity: 1; } }
+      @media (prefers-reduced-motion: reduce) {
+        #splash *, #splash { animation: none !important; transition-duration: 0.01ms !important; }
+        #splash .route-trail { stroke-dashoffset: 0; }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="splash" role="status" aria-label="Loading Vietlook Travel">
+      <div class="splash-inner">
+        <div class="splash-logo"><img src="/images/brand/logo-vietlook.png" alt="" width="545" height="340" /></div>
+        <svg class="splash-route" viewBox="0 0 560 120" aria-hidden="true">
+          <defs>
+            <linearGradient id="splash-trail-grad" x1="0" x2="1" y1="0" y2="0">
+              <stop offset="0" stop-color="#ec2f35" stop-opacity="0" />
+              <stop offset="1" stop-color="#ec2f35" />
+            </linearGradient>
+          </defs>
+          <path id="splash-route-path" class="route-dash" d="M12 100 C 150 -10, 410 -10, 548 100" />
+          <path class="route-trail" pathLength="1" d="M12 100 C 150 -10, 410 -10, 548 100" />
+          <g class="route-plane">
+            <!-- Lucide "plane" icon, turned to point along +x so rotate="auto" follows the curve -->
+            <g transform="rotate(45) translate(-12 -12)">
+              <path fill="currentColor" stroke="currentColor" stroke-width="1" stroke-linejoin="round" d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z" />
+            </g>
+            <animateMotion dur="3s" fill="freeze" rotate="auto" calcMode="spline" keyTimes="0;1" keyPoints="0;1" keySplines="0.45 0 0.25 1">
+              <mpath href="#splash-route-path" />
+            </animateMotion>
+          </g>
+        </svg>
+      </div>
+      <button type="button" class="splash-hint" id="splash-enter">
+        <span id="splash-hint-text">Scroll to enter</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+      </button>
+    </div>
+    <script>
+      if (location.pathname.indexOf('/zh') === 0) document.getElementById('splash-hint-text').textContent = '向下滑动进入'
+    </script>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
