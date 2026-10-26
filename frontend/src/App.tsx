@@ -1,5 +1,5 @@
 import { lazy } from 'react'
-import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom'
+import { createBrowserRouter, Navigate, RouterProvider, type RouteObject } from 'react-router-dom'
 import Layout from '@/components/layout/Layout'
 import RouteError from '@/pages/RouteError'
 
@@ -25,7 +25,8 @@ const Legal = lazy(() => import('@/pages/Legal'))
 const NotFound = lazy(() => import('@/pages/NotFound'))
 const GroupTours = lazy(() => import('@/pages/GroupTours'))
 
-const router = createBrowserRouter([
+/** Shared by the browser router below and the build-time prerender (entry-server.tsx). */
+export const routes: RouteObject[] = [
   { path: '/', element: <Navigate to="/en" replace /> },
   {
     path: '/:lang',
@@ -59,8 +60,12 @@ const router = createBrowserRouter([
       { path: '*', element: <NotFound /> },
     ],
   },
-])
+]
+
+// Created on first render rather than at import time, so the prerender can import `routes` without a browser.
+let router: ReturnType<typeof createBrowserRouter> | undefined
 
 export default function App() {
+  router ??= createBrowserRouter(routes)
   return <RouterProvider router={router} />
 }

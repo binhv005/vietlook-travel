@@ -51,5 +51,6 @@ export default defineConfig(({ mode }) => {
     plugins: [react(), tailwindcss(), sitemap(siteUrl)],
     resolve: { alias: { '@': path.resolve(__dirname, 'src') } },
     build: { chunkSizeWarningLimit: 700 },
+    define: { __BUILD_YEAR__: JSON.stringify(new Date().getFullYear()) },
   }
 })

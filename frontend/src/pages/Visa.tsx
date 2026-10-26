@@ -12,7 +12,8 @@ import Img from '@/components/ui/Img'
 import FaqList from '@/components/sections/FaqList'
 import { Field, FormAlert, Honeypot, SubmitBar } from '@/components/forms/Field'
 import ContactFields, { type ContactValues } from '@/components/forms/ContactFields'
-import { makeRules, todayISO } from '@/components/forms/rules'
+import { makeRules } from '@/components/forms/rules'
+import { useTodayISO } from '@/hooks/useClientValue'
 
 /** Staggered hero photos: each sits at its own height so the row reads like a loose collage. Phones show only two (the welcome photo reappears further down). */
 const HERO_PHOTOS = [
@@ -56,6 +57,7 @@ interface VisaValues extends ContactValues {
 
 export default function Visa() {
   const { t, l, lang } = useI18n()
+  const today = useTodayISO()
   const r = makeRules(t)
   const { submit, sending, errorMessage, honeypot } = useSubmit('visa')
   const {
@@ -96,7 +98,7 @@ export default function Visa() {
                 key={ph.src}
                 src={ph.src}
                 alt={i === 0 ? l({ en: 'International airport terminal in Vietnam', zh: '越南国际机场航站楼' }) : ''}
-                priority={i < 2}
+                priority={i === 0}
                 className={`w-full rounded-2xl object-cover shadow-xl ring-4 ring-white ${ph.cls}`}
               />
             ))}
@@ -278,7 +280,7 @@ export default function Visa() {
                 <input type="number" min={1} max={200} className="field-input" {...register('travellers', r.int(1, 200))} />
               </Field>
               <Field id="vf-arrival" label={t.visa.arrival} required error={err('arrival')}>
-                <input type="date" min={todayISO()} className="field-input" {...register('arrival', r.futureDate())} />
+                <input type="date" min={today || undefined} className="field-input" {...register('arrival', r.futureDate())} />
               </Field>
               <Field id="vf-airport" label={t.visa.airport} error={err('airport')}>
                 <select className="field-input" {...register('airport')}>

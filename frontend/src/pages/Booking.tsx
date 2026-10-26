@@ -10,7 +10,8 @@ import Img from '@/components/ui/Img'
 import PageIntro from '@/components/sections/PageIntro'
 import { Field, FormAlert, Honeypot, SubmitBar } from '@/components/forms/Field'
 import ContactFields, { type ContactValues } from '@/components/forms/ContactFields'
-import { makeRules, todayISO } from '@/components/forms/rules'
+import { makeRules } from '@/components/forms/rules'
+import { useTodayISO } from '@/hooks/useClientValue'
 
 interface BookingValues extends ContactValues {
   tour: string
@@ -27,6 +28,7 @@ interface BookingValues extends ContactValues {
 export default function Booking() {
   const { tourSlug } = useParams()
   const { t, l, lang } = useI18n()
+  const today = useTodayISO()
   const duration = useDuration()
   const r = makeRules(t)
   const { submit, sending, errorMessage, honeypot } = useSubmit('booking')
@@ -92,7 +94,7 @@ export default function Booking() {
                   <select className="field-input" {...register('date', r.required)}>
                     <option value="">{t.form.select}</option>
                     {selected.departures
-                      .filter((d) => d >= todayISO())
+                      .filter((d) => d >= today)
                       .map((d) => (
                         <option key={d} value={d}>
                           {formatDate(d, lang)}
@@ -102,7 +104,7 @@ export default function Booking() {
                 </Field>
               ) : (
                 <Field id="bk-date" label={t.booking.date} required error={errors.date?.message}>
-                  <input type="date" min={todayISO()} className="field-input" {...register('date', r.futureDate())} />
+                  <input type="date" min={today || undefined} className="field-input" {...register('date', r.futureDate())} />
                 </Field>
               )}
               <Field id="bk-adults" label={t.booking.adults} required error={errors.adults?.message}>

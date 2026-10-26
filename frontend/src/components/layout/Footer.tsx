@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react'
+import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import { Facebook, Mail, MapPin, Phone } from 'lucide-react'
 import WhatsAppIcon from '@/components/ui/WhatsAppIcon'
@@ -7,9 +7,22 @@ import { site } from '@/data/site'
 import { regions } from '@/data/destinations'
 import { themes } from '@/data/themes'
 import { useI18n } from '@/i18n'
+import { useYear } from '@/hooks/useClientValue'
 
 export default function Footer() {
   const { t, l, to, lang } = useI18n()
+  const year = useYear()
+  // The city artwork (84 KB) is a CSS background, which browsers fetch as soon as the footer is in the DOM.
+  // Attach it only when the footer comes near the screen so it doesn't compete with the page's hero image.
+  const artRef = useRef<HTMLDivElement>(null)
+  const [showArt, setShowArt] = useState(false)
+  useEffect(() => {
+    const el = artRef.current
+    if (!el || typeof IntersectionObserver === 'undefined') return setShowArt(true)
+    const io = new IntersectionObserver(([e]) => e.isIntersecting && (setShowArt(true), io.disconnect()), { rootMargin: '1000px 0px' })
+    io.observe(el)
+    return () => io.disconnect()
+  }, [])
   const col = (title: string, links: { label: string; path: string }[], extra?: ReactNode) => (
     <div>
       <h2 className="mb-4 text-sm font-bold tracking-[0.14em] text-white uppercase">{title}</h2>
@@ -29,8 +42,9 @@ export default function Footer() {
   return (
     <footer className="relative isolate overflow-hidden bg-brand-950 text-white">
       <div
+        ref={artRef}
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-full bg-[url('/images/footer.webp')] bg-[length:100%_auto] bg-bottom bg-no-repeat opacity-55 max-md:bg-[length:auto_45%]"
+        className={`pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-full bg-[length:100%_auto] bg-bottom bg-no-repeat opacity-55 max-md:bg-[length:auto_45%] ${showArt ? "bg-[url('/images/footer.webp')]" : ''}`}
       />
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-brand-950 from-40% via-brand-950/50 via-70% to-transparent" />
       <div className="container-x grid gap-12 pt-16 pb-40 md:grid-cols-2 md:pb-48 lg:pb-56 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
@@ -96,7 +110,7 @@ export default function Footer() {
       <div className="border-t border-white/10">
         <div className="container-x grid items-center justify-items-center gap-4 py-6 text-sm text-white/90 [text-shadow:0_1px_3px_rgb(0_0_0/0.8)] md:grid-cols-[1fr_auto_1fr]">
           <p className="text-center md:col-start-2">
-            © {new Date().getFullYear()} {site.name}. {t.footer.rights}
+            © {year} {site.name}. {t.footer.rights}
           </p>
           <div className="flex items-center gap-4 md:justify-self-end">
             <span>{t.footer.follow}</span>

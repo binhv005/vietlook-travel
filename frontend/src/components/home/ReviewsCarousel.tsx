@@ -7,7 +7,7 @@ import Img from '../ui/Img'
 const INTERVAL = 2000
 
 function usePerView() {
-  const get = () => (window.matchMedia('(min-width: 1024px)').matches ? 3 : window.matchMedia('(min-width: 768px)').matches ? 2 : 1)
+  const get = () => (typeof window === 'undefined' ? 1 : window.matchMedia('(min-width: 1024px)').matches ? 3 : window.matchMedia('(min-width: 768px)').matches ? 2 : 1)
   const [n, setN] = useState(get)
   useEffect(() => {
     const onResize = () => setN(get())

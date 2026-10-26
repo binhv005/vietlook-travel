@@ -13,7 +13,8 @@ import PageIntro from '@/components/sections/PageIntro'
 import { ButtonLink } from '@/components/ui/Button'
 import { ChoiceGroup, Chip, Field, FormAlert, Honeypot, SubmitBar } from '@/components/forms/Field'
 import ContactFields, { type ContactValues } from '@/components/forms/ContactFields'
-import { makeRules, todayISO } from '@/components/forms/rules'
+import { makeRules } from '@/components/forms/rules'
+import { useTodayISO } from '@/hooks/useClientValue'
 
 interface TailorValues extends ContactValues {
   regions: string[]
@@ -56,6 +57,7 @@ function loadDraft(): Partial<TailorValues> {
 /** Three-step tailor-made request (trip & group, style & budget, contact) with per-step validation and draft persistence. */
 export default function TailorMade() {
   const { t, l, lang } = useI18n()
+  const today = useTodayISO()
   const r = makeRules(t)
   const [sp] = useSearchParams()
   const [step, setStep] = useState(0)
@@ -194,7 +196,7 @@ export default function TailorMade() {
                 </ChoiceGroup>
                 <div className="grid gap-5 sm:grid-cols-2">
                   <Field id="tm-date" label={t.tailor.startDate} required={!flexible} error={err('startDate')}>
-                    <input type="date" min={todayISO()} className="field-input" {...register('startDate', r.futureDate(!flexible))} />
+                    <input type="date" min={today || undefined} className="field-input" {...register('startDate', r.futureDate(!flexible))} />
                   </Field>
                   <Field id="tm-length" label={t.tailor.length} required error={err('length')}>
                     <input type="number" min={1} max={60} className="field-input" {...register('length', r.int(1, 60))} />

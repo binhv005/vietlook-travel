@@ -6,7 +6,8 @@ import { useI18n } from '@/i18n'
 import { useSubmit } from '@/hooks/useSubmit'
 import { Field, FormAlert, Honeypot, SubmitBar } from '../forms/Field'
 import ContactFields, { type ContactValues } from '../forms/ContactFields'
-import { makeRules, todayISO } from '../forms/rules'
+import { makeRules } from '../forms/rules'
+import { useTodayISO } from '@/hooks/useClientValue'
 import Img from '../ui/Img'
 
 interface PlanValues extends ContactValues {
@@ -22,6 +23,7 @@ const cell = 'sm:row-span-3 sm:grid sm:grid-rows-subgrid sm:gap-y-0'
 /** Short "plan your trip" form on the homepage; stored as a tailor-made request. */
 export default function PlanTripForm() {
   const { t, l, to, lang } = useI18n()
+  const today = useTodayISO()
   const r = makeRules(t)
   const { submit, sending, errorMessage, honeypot } = useSubmit('tailor')
   const {
@@ -72,7 +74,7 @@ export default function PlanTripForm() {
               </select>
             </Field>
             <Field id="hp-date" className={cell} label={t.tailor.startDate} error={errors.startDate?.message}>
-              <input type="date" min={todayISO()} className="field-input" {...register('startDate', r.futureDate(false))} />
+              <input type="date" min={today || undefined} className="field-input" {...register('startDate', r.futureDate(false))} />
             </Field>
             <Field id="hp-guests" className={cell} label={t.tailor.guests} required error={errors.guests?.message}>
               <input type="number" min={1} max={500} className="field-input" {...register('guests', r.int(1, 500))} />

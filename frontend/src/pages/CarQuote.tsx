@@ -10,7 +10,8 @@ import PageIntro from '@/components/sections/PageIntro'
 import Img from '@/components/ui/Img'
 import { Field, FormAlert, Honeypot, SubmitBar } from '@/components/forms/Field'
 import ContactFields, { type ContactValues } from '@/components/forms/ContactFields'
-import { makeRules, todayISO } from '@/components/forms/rules'
+import { makeRules } from '@/components/forms/rules'
+import { useTodayISO } from '@/hooks/useClientValue'
 
 const SERVICES = ['airport', 'daily', 'intercity', 'multiday', 'group'] as const
 type Service = (typeof SERVICES)[number]
@@ -59,6 +60,7 @@ interface CarQuoteValues extends ContactValues {
 
 export default function CarQuote() {
   const { t, l, lang } = useI18n()
+  const today = useTodayISO()
   const r = makeRules(t)
   const [sp] = useSearchParams()
   const { submit, sending, errorMessage, honeypot } = useSubmit('car')
@@ -152,7 +154,7 @@ export default function CarQuote() {
 
             <div className="grid gap-5 sm:grid-cols-3">
               <Field id="cq-date" label={t.carQuote.date} required error={err('date')}>
-                <input type="date" min={todayISO()} className="field-input" {...register('date', r.futureDate())} />
+                <input type="date" min={today || undefined} className="field-input" {...register('date', r.futureDate())} />
               </Field>
               <Field id="cq-time" label={t.carQuote.time} error={err('time')}>
                 <input type="time" className="field-input" {...register('time')} />
@@ -161,7 +163,7 @@ export default function CarQuote() {
                 <Field id="cq-end" label={t.carQuote.endDate} required={service === 'multiday'} error={err('endDate')}>
                   <input
                     type="date"
-                    min={watch('date') || todayISO()}
+                    min={watch('date') || today || undefined}
                     className="field-input"
                     {...register('endDate', {
                       ...(service === 'multiday' ? r.required : {}),

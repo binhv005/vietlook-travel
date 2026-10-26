@@ -6,15 +6,20 @@
     <link rel="icon" type="image/png" href="/images/brand/logo-vietlook.png" />
     <meta name="theme-color" content="#0b1b3a" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preload" as="image" href="/images/brand/logo-vietlook.png" />
+    <link rel="preload" as="image" href="/images/brand/logo-vietlook.png" fetchpriority="high" />
     <!-- Latin fonts are self-hosted (src/fonts.ts). Chinese fonts are huge, so /zh pages get the full set and other
-         pages only the glyphs of the "中文" language label. Script-inserted, so it never blocks the first paint.
-         Keep in sync with loadChineseFonts() in src/components/layout/Layout.tsx. -->
+         pages only the glyphs of the "中文" language label. A stylesheet added to <head> this way still blocks the
+         first paint, so it starts as media="print" (fetched without blocking) and switches on once loaded; text
+         shows in the system Chinese font until then. Keep in sync with loadChineseFonts() in src/components/layout/Layout.tsx. -->
     <script>
       ;(function () {
         var zh = /^\/zh(\/|$)/.test(location.pathname)
         var l = document.createElement('link')
         l.rel = 'stylesheet'
+        l.media = 'print'
+        l.onload = function () {
+          l.media = 'all'
+        }
         l.id = zh ? 'font-zh' : 'font-zh-label'
         l.href = zh
           ? 'https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@600;700&display=swap'
@@ -114,7 +119,7 @@
   <body>
     <div id="splash" role="status" aria-label="Loading Vietlook Travel">
       <div class="splash-inner">
-        <div class="splash-logo"><img src="/images/brand/logo-vietlook.png" alt="" width="545" height="340" /></div>
+        <div class="splash-logo"><img src="/images/brand/logo-vietlook.png" alt="" width="545" height="340" fetchpriority="high" /></div>
         <svg class="splash-route" viewBox="0 0 560 120" aria-hidden="true">
           <defs>
             <linearGradient id="splash-trail-grad" x1="0" x2="1" y1="0" y2="0">
