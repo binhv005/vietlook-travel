@@ -123,7 +123,7 @@ export default function Contact() {
             </div>
 
             <div className="card overflow-hidden">
-              <iframe title={c.address} src={site.mapsEmbed} className="aspect-[4/3] w-full border-0" loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
+              <iframe title={c.address} src={site.mapsEmbed} className="aspect-[4/3] w-full border-0 bg-mist" loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
               <div className="p-5">
                 <p className="flex gap-2 text-sm">
                   <MapPin className="mt-0.5 size-4 shrink-0 text-brand-600" aria-hidden /> {site.address[lang]}

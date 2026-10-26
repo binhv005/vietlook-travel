@@ -43,7 +43,7 @@ export default function About() {
             </ul>
           </div>
           <div className="relative">
-            <Img src={site.logo} alt={site.name} className="absolute -top-6 -left-4 z-10 h-24 w-auto rounded-xl bg-white p-2 shadow-lg" />
+            <Img src={site.logo} alt={site.name} className="absolute -top-4 left-3 z-10 h-16 w-auto md:-top-6 md:-left-4 md:h-24 rounded-xl bg-white p-2 shadow-lg" />
             <Img src="/images/tours/hoi-an-9-copy.webp" alt="" className="aspect-[4/3] w-full rounded-2xl object-cover" />
           </div>
         </div>
@@ -144,7 +144,7 @@ export default function About() {
           <div>
             <h2 className="h-section text-white">{t.about.contactTitle}</h2>
             <p className="mt-2 text-white/75">
-              {t.contact.person}: {site.contactPerson} · {site.phone}
+              {t.contact.person}: {site.contactPerson} · <span className="whitespace-nowrap">{site.phone}</span>
             </p>
           </div>
           <div className="flex flex-wrap gap-3">

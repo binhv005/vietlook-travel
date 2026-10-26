@@ -14,12 +14,12 @@ import { Field, FormAlert, Honeypot, SubmitBar } from '@/components/forms/Field'
 import ContactFields, { type ContactValues } from '@/components/forms/ContactFields'
 import { makeRules, todayISO } from '@/components/forms/rules'
 
-/** Staggered hero photos: each sits at its own height so the row reads like a loose collage. */
+/** Staggered hero photos: each sits at its own height so the row reads like a loose collage. Phones show only two (the welcome photo reappears further down). */
 const HERO_PHOTOS = [
   { src: '/images/tours/airport-pick-up-one-way.webp', cls: 'aspect-[4/4.4]' },
-  { src: '/images/tours/welcome-vietlook.webp', cls: 'aspect-[4/3.2] mt-6' },
+  { src: '/images/tours/welcome-vietlook.webp', cls: 'aspect-[4/3.2] mt-6 max-md:hidden' },
   { src: '/images/cars/minivan-golf.webp', cls: 'aspect-[4/4.2] md:-mt-3' },
-  { src: '/images/tours/hanoi-12.webp', cls: 'aspect-[4/3.2] mt-6' },
+  { src: '/images/tours/hanoi-12.webp', cls: 'aspect-[4/3.2] mt-6 max-md:hidden' },
 ]
 /** Small four-point sparkle doodle. */
 function Sparkle({ className = '' }: { className?: string }) {
@@ -173,8 +173,8 @@ export default function Visa() {
               <p className="mt-3 text-muted">{t.visa.typesText}</p>
             </div>
             <div className="overflow-x-auto rounded-2xl bg-white shadow-[0_10px_40px_rgba(15,40,70,0.10)] ring-1 ring-brand-100">
-              <table className="w-full min-w-[560px] text-left text-[0.95rem]">
-                <thead className="bg-brand-700 text-xs tracking-wider text-white uppercase">
+              <table className="w-full text-left text-[0.95rem] sm:min-w-[560px] max-sm:[&_td]:block max-sm:[&_td]:pt-0 max-sm:[&_th[scope=row]]:block max-sm:[&_th[scope=row]]:pb-2">
+                <thead className="bg-brand-700 max-sm:hidden text-xs tracking-wider text-white uppercase">
                   <tr>
                     <th scope="col" className="px-5 py-4 font-bold">{t.visa.colType}</th>
                     <th scope="col" className="px-5 py-4 font-bold">{t.visa.colProcessing}</th>
@@ -188,8 +188,8 @@ export default function Visa() {
                         <span className="font-semibold text-ink">{l(v.name)}</span>
                         <span className="mt-1 block text-muted">{l(v.description)}</span>
                       </th>
-                      <td className="px-5 py-4 align-top">{v.processing ? l(v.processing) : <span className="inline-block rounded-full bg-accent-50 px-2.5 py-1 text-xs font-semibold whitespace-nowrap text-accent-600">{t.visa.onRequest}</span>}</td>
-                      <td className="px-5 py-4 align-top">{v.fee ?? <span className="inline-block rounded-full bg-accent-50 px-2.5 py-1 text-xs font-semibold whitespace-nowrap text-accent-600">{t.visa.onRequest}</span>}</td>
+                      <td className="px-5 py-4 align-top"><span className="mb-1 block text-xs font-bold tracking-wider text-muted uppercase sm:hidden">{t.visa.colProcessing}</span>{v.processing ? l(v.processing) : <span className="inline-block rounded-full bg-accent-50 px-2.5 py-1 text-xs font-semibold whitespace-nowrap text-accent-600">{t.visa.onRequest}</span>}</td>
+                      <td className="px-5 py-4 align-top"><span className="mb-1 block text-xs font-bold tracking-wider text-muted uppercase sm:hidden">{t.visa.colFee}</span>{v.fee ?? <span className="inline-block rounded-full bg-accent-50 px-2.5 py-1 text-xs font-semibold whitespace-nowrap text-accent-600">{t.visa.onRequest}</span>}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -202,8 +202,8 @@ export default function Visa() {
               <p className="mt-3 text-muted">{t.visa.fastText}</p>
             </div>
             <div className="overflow-x-auto rounded-2xl bg-white shadow-[0_10px_40px_rgba(15,40,70,0.10)] ring-1 ring-brand-100">
-              <table className="w-full min-w-[560px] text-left text-[0.95rem]">
-                <thead className="bg-brand-700 text-xs tracking-wider text-white uppercase">
+              <table className="w-full text-left text-[0.95rem] sm:min-w-[560px] max-sm:[&_td]:block max-sm:[&_td]:pt-0 max-sm:[&_th[scope=row]]:block max-sm:[&_th[scope=row]]:pb-2">
+                <thead className="bg-brand-700 max-sm:hidden text-xs tracking-wider text-white uppercase">
                   <tr>
                     <th scope="col" className="px-5 py-4 font-bold">{t.visa.colAirport}</th>
                     <th scope="col" className="px-5 py-4 font-bold">{t.visa.colPackages}</th>
@@ -217,6 +217,7 @@ export default function Visa() {
                         <span className="font-semibold text-ink">{l(a.name)}</span> <span className="ml-1 rounded bg-brand-600 px-1.5 py-0.5 text-[0.7rem] font-bold text-white">{a.code}</span>
                       </th>
                       <td className="px-5 py-4 align-top">
+                        <span className="mb-1 block text-xs font-bold tracking-wider text-muted uppercase sm:hidden">{t.visa.colPackages}</span>
                         <ul className="flex flex-wrap gap-1.5">
                           {a.packages.map((k) => {
                             const pk = fastTrackPackages.find((x) => x.key === k)
@@ -228,7 +229,7 @@ export default function Visa() {
                           })}
                         </ul>
                       </td>
-                      <td className="px-5 py-4 align-top">{a.fee ?? <span className="inline-block rounded-full bg-accent-50 px-2.5 py-1 text-xs font-semibold whitespace-nowrap text-accent-600">{t.visa.onRequest}</span>}</td>
+                      <td className="px-5 py-4 align-top"><span className="mb-1 block text-xs font-bold tracking-wider text-muted uppercase sm:hidden">{t.visa.colFee}</span>{a.fee ?? <span className="inline-block rounded-full bg-accent-50 px-2.5 py-1 text-xs font-semibold whitespace-nowrap text-accent-600">{t.visa.onRequest}</span>}</td>
                     </tr>
                   ))}
                 </tbody>

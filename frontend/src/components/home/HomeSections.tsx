@@ -103,7 +103,7 @@ export function WhyBlock() {
           {t.home.why.map((w, i) => {
             const Icon = icons[i]
             return (
-              <Reveal key={w.t} delay={i * 50} className="rounded-2xl border border-line bg-[url(/images/card-paper.webp)] bg-cover bg-center p-6 text-center shadow-sm">
+              <Reveal key={w.t} delay={i * 50} className="rounded-2xl border border-line bg-[url(/images/card-paper.webp)] bg-cover bg-right-top p-6 text-center shadow-sm">
                 <Icon className="mx-auto size-7 text-brand-600" aria-hidden />
                 <h3 className="mt-3 font-bold">{w.t}</h3>
                 <p className="mt-1.5 text-sm leading-relaxed text-muted">{w.d}</p>
@@ -304,7 +304,7 @@ export function ThemesBlock() {
 export function PartnerBlock() {
   const { t, to } = useI18n()
   return (
-    <section className="relative isolate overflow-hidden bg-white py-20 md:py-28">
+    <section className="relative isolate overflow-hidden bg-white pt-10 pb-20 md:py-28">
       <LineMotif variant="river" fill="#fff" className="absolute bottom-2 left-[-30px] -z-10 hidden w-[460px] text-sun opacity-35 md:block" />
       <div className="container-x grid items-center gap-12 lg:grid-cols-2">
         <Reveal className="relative pb-12 lg:pr-12">

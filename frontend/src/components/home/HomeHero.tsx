@@ -208,7 +208,7 @@ export default function HomeHero() {
         {/* Right: destination cards. The track slides left by one card per step; cards already passed fade out. */}
         {n > 0 && (
           <div
-            className="-mx-4 min-w-0 overflow-hidden px-4 pt-2 pb-2 lg:mx-0 lg:px-0 lg:[mask-image:linear-gradient(to_right,#000_80%,transparent)]"
+            className="-mx-4 min-w-0 overflow-hidden px-4 pt-2 pb-2 [mask-image:linear-gradient(to_right,#000_70%,transparent)] lg:mx-0 lg:px-0 lg:[mask-image:linear-gradient(to_right,#000_80%,transparent)]"
             onMouseEnter={() => setHover(true)}
             onMouseLeave={() => setHover(false)}
           >

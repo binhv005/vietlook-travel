@@ -277,7 +277,7 @@ export default function TailorMade() {
         </form>
 
         <aside className="space-y-6 lg:sticky lg:top-32 lg:h-fit">
-          <img src="/images/tours/khamphavedepvietnamhuehoiansapa.webp" alt="" className="aspect-[4/3] w-full rounded-2xl object-cover" loading="lazy" />
+          <img src="/images/tours/khamphavedepvietnamhuehoiansapa.webp" alt="" className="hidden aspect-[4/3] w-full rounded-2xl object-cover lg:block" loading="lazy" />
           {/* Photo card: Ninh Binh boats under a dark wash, white text on top. */}
           <div className="relative isolate overflow-hidden rounded-2xl bg-brand-950 p-6 text-white shadow-lg">
             <img src="/images/tours/dulichninhbinhthang12cogidep8.webp" alt="" loading="lazy" className="absolute inset-0 -z-20 size-full object-cover" />

@@ -67,7 +67,7 @@ export default function Partners() {
             <p className="eyebrow mb-3">{t.partners.eyebrow}</p>
             <h2 className="h-section">{t.partners.whyTitle}</h2>
             <Img src="/images/tours/welcome-vietlook.webp" alt="" className="mt-8 hidden aspect-[4/3] w-full rounded-2xl object-cover shadow-lg lg:block" />
-            <div className="mt-8 flex justify-center">
+            <div className="mt-8 hidden justify-center lg:flex">
               <a href="#partner-form" className={buttonClass('primary', 'lg')}>
                 <Handshake className="size-5" aria-hidden /> {t.home.b2bCta}
               </a>
@@ -113,7 +113,7 @@ export default function Partners() {
             </ol>
             <p className="mt-8 text-sm text-white/60">{t.partners.note}</p>
           </div>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="hidden grid-cols-2 gap-4 sm:grid">
             <Img src="/images/tours/coktail-crusie.webp" alt="" className="aspect-[3/4] w-full rounded-2xl object-cover" />
             <Img src="/images/cars/van16-white.webp" alt="" className="mt-10 aspect-[3/4] w-full rounded-2xl object-cover" />
           </div>

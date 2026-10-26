@@ -302,7 +302,7 @@ const zh: Dict = {
   themes: {
     title: '主题游',
     intro: '选择一种旅行风格，查看相应行程。主题可以组合——文化之旅可以在海滩收尾，亲子假期也可以加入游船。',
-    browse: '浏览{name}线路',
+    browse: '浏览{name}',
     samples: '{name}示例线路',
     filters: '筛选',
     reset: '重置',
@@ -574,7 +574,7 @@ const zh: Dict = {
     businessTypes: { agency: '旅行社', operator: '组团社', wholesaler: '批发商', dmc: 'DMC', mice: '会奖 / 活动', other: '其他' },
     interests: '感兴趣的服务',
     interestOpts: { tours: '团队与定制线路', transport: '交通服务', cruises: '游船', visa: '签证与快速通道', mice: '会奖服务' },
-    volume: '预计团队规模 / 业务量（选填）',
+    volume: '预计团队规模 / 业务量',
     message: '请介绍您的需求',
     submit: '洽谈合作',
   },

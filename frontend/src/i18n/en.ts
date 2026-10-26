@@ -311,7 +311,7 @@ const en = {
   themes: {
     title: 'Tour Themes',
     intro: 'Choose a travel style to see matching itineraries. Themes can be combined – a culture tour can end on the beach, and a family holiday can include a cruise.',
-    browse: 'Browse {name} tours',
+    browse: 'Browse {name}',
     samples: 'Sample {name} tours',
     filters: 'Filters',
     reset: 'Reset',
@@ -592,7 +592,7 @@ const en = {
     businessTypes: { agency: 'Travel agency', operator: 'Tour operator', wholesaler: 'Wholesaler', dmc: 'DMC', mice: 'MICE / events', other: 'Other' },
     interests: 'Services of interest',
     interestOpts: { tours: 'Group & tailor-made tours', transport: 'Transportation', cruises: 'Cruises', visa: 'Visa & fast-track', mice: 'MICE services' },
-    volume: 'Expected group sizes / volume (optional)',
+    volume: 'Expected group sizes / volume',
     message: 'Tell us about your needs',
     submit: 'Discuss a Partnership',
   },

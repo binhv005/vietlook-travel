@@ -34,7 +34,7 @@ export default function PageHero({ image, imageAlt, eyebrow, title, text, crumbs
         }`}
       >
         <Img src={image} alt={imageAlt} priority className={`absolute inset-0 -z-10 size-full object-cover ${FOCUS[focus]}`} />
-        <div className="absolute inset-0 -z-10 bg-gradient-to-t from-brand-950/90 via-brand-950/45 to-brand-950/10" aria-hidden />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-t from-brand-950/90 via-brand-950/60 to-brand-950/40 md:via-brand-950/45 md:to-brand-950/10" aria-hidden />
         <div className="container-x pt-28 pb-12 md:pb-16">
           {crumbs && (
             <div className="mb-5">

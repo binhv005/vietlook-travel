@@ -1,6 +1,6 @@
 /**
  * Map of Vietnam (white background removed) as a faint backdrop on the right of a section.
- * The parent section needs `relative isolate overflow-hidden`.
+ * The parent section needs `relative isolate overflow-hidden`. Hidden on phones, where it would sit right behind the text.
  */
 export default function MapBackdrop({ className = '' }: { className?: string }) {
   return (
@@ -10,7 +10,7 @@ export default function MapBackdrop({ className = '' }: { className?: string }) 
       alt=""
       aria-hidden
       loading="lazy"
-      className={`pointer-events-none absolute top-1/2 right-[2%] -z-10 h-[90%] w-auto max-w-none -translate-y-1/2 opacity-25 select-none md:right-[6%] ${className}`}
+      className={`pointer-events-none absolute top-1/2 hidden md:block right-[2%] -z-10 h-[90%] w-auto max-w-none -translate-y-1/2 opacity-25 select-none md:right-[6%] ${className}`}
     />
   )
 }

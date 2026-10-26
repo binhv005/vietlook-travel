@@ -22,8 +22,7 @@ export default function Layout() {
   if (!isLang(lang)) return <Navigate to={`/en${pathname}${search}`} replace />
   return (
     <I18nProvider lang={lang}>
-      {/* pb-14 keeps the footer clear of the mobile contact bar */}
-      <div className={`flex min-h-screen flex-col pb-14 md:pb-0 ${lang === 'zh' ? 'lang-zh' : ''}`}>
+      <div className={`flex min-h-screen flex-col ${lang === 'zh' ? 'lang-zh' : ''}`}>
         <Header />
         <main id="main" className="flex-1">
           <Suspense fallback={<PageLoader />}>

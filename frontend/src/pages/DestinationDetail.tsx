@@ -102,7 +102,7 @@ export default function DestinationDetail() {
         <section className="pb-16 md:pb-20">
           <div className="container-x">
             <SectionHeading title={fmt(t.destinations.places, { name })} />
-            <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5">
+            <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5 max-md:[&>*:last-child:nth-child(odd)]:col-span-2 max-md:[&>*:last-child:nth-child(odd)]:aspect-[16/9]">
               {children.map((c) => (
                 <Link key={c.slug} to={to(`/destinations/${c.slug}`)} className="group relative block aspect-[4/5] overflow-hidden rounded-xl">
                   <Img src={c.image} alt="" className="absolute inset-0 size-full object-cover transition duration-700 group-hover:scale-105" />

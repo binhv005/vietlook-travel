@@ -7,12 +7,11 @@ import WeChatButton from './WeChatButton'
 
 /**
  * Persistent WhatsApp / WeChat / hotline shortcuts.
- * Mobile: a slim bottom bar, so the buttons never sit on top of page content.
- * Tablet/desktop: a floating stack of round icons at the bottom right; each label slides out on hover / keyboard focus.
+ * A floating stack of round icons at the bottom right (slightly smaller on phones); each label slides out on hover / keyboard focus.
  */
 export default function FloatingContact() {
   const { t } = useI18n()
-  const pill = 'group relative isolate inline-flex h-14 items-center rounded-full px-4 text-white shadow-lg transition-colors motion-safe:animate-widget-in'
+  const pill = 'group relative isolate inline-flex h-11 items-center rounded-full px-2.5 md:h-14 md:px-4 text-white shadow-lg transition-colors motion-safe:animate-widget-in'
   // Halo pulses one button after another (delay i * 1s) and stops while the label is open.
   const halo = (i: number) => (
     <span
@@ -27,41 +26,23 @@ export default function FloatingContact() {
       {text}
     </span>
   )
-  const barItem = 'flex flex-1 items-center justify-center gap-1.5 text-sm font-semibold'
   return (
-    <>
-      <div className="fixed right-4 bottom-4 z-30 hidden flex-col items-end gap-3 md:flex print:hidden">
-        <a href={site.phoneHref} aria-label={`${t.common.callUs} ${site.phone}`} className={`${pill} bg-accent-500 hover:bg-accent-600`} style={enter(0)}>
-          {halo(0)}
-          <Phone className="size-6 shrink-0 motion-safe:animate-ring" aria-hidden />
-          {label(site.phone)}
-        </a>
-        <WeChatButton className={`${pill} bg-[#07c160] hover:bg-[#06a853]`} label="WeChat" style={enter(1)}>
-          {halo(1)}
-          <WeChatIcon className="size-6 shrink-0" aria-hidden />
-          {label('WeChat')}
-        </WeChatButton>
-        <a href={site.whatsappHref} target="_blank" rel="noopener noreferrer" aria-label={t.common.chatWhatsapp} className={`${pill} bg-[#1f9d55] hover:bg-[#188049]`} style={enter(2)}>
-          {halo(2)}
-          <WhatsAppIcon className="size-6 shrink-0" aria-hidden />
-          {label(t.common.chatWhatsapp)}
-        </a>
-      </div>
-
-      <nav
-        aria-label={t.contact.infoTitle}
-        className="fixed inset-x-0 bottom-0 z-30 flex h-14 divide-x divide-white/20 bg-brand-900 pb-[env(safe-area-inset-bottom)] text-white shadow-[0_-4px_16px_rgba(0,0,0,0.12)] md:hidden print:hidden"
-      >
-        <a href={site.phoneHref} className={`${barItem} bg-accent-500`} aria-label={`${t.common.callUs} ${site.phone}`}>
-          <Phone className="size-4" aria-hidden /> {t.common.call}
-        </a>
-        <WeChatButton className={barItem} label="WeChat">
-          <WeChatIcon className="size-4" aria-hidden /> WeChat
-        </WeChatButton>
-        <a href={site.whatsappHref} target="_blank" rel="noopener noreferrer" className={`${barItem} bg-[#1f9d55]`} aria-label={t.common.chatWhatsapp}>
-          <WhatsAppIcon className="size-4" aria-hidden /> WhatsApp
-        </a>
-      </nav>
-    </>
+    <div className="fixed right-2 bottom-3 z-30 flex flex-col items-end gap-2 md:right-4 md:bottom-4 md:gap-3 print:hidden">
+      <a href={site.phoneHref} aria-label={`${t.common.callUs} ${site.phone}`} className={`${pill} bg-accent-500 hover:bg-accent-600`} style={enter(0)}>
+        {halo(0)}
+        <Phone className="size-6 shrink-0 max-md:size-5 motion-safe:animate-ring" aria-hidden />
+        {label(site.phone)}
+      </a>
+      <WeChatButton className={`${pill} bg-[#07c160] hover:bg-[#06a853]`} label="WeChat" style={enter(1)}>
+        {halo(1)}
+        <WeChatIcon className="size-6 shrink-0 max-md:size-5" aria-hidden />
+        {label('WeChat')}
+      </WeChatButton>
+      <a href={site.whatsappHref} target="_blank" rel="noopener noreferrer" aria-label={t.common.chatWhatsapp} className={`${pill} bg-[#1f9d55] hover:bg-[#188049]`} style={enter(2)}>
+        {halo(2)}
+        <WhatsAppIcon className="size-6 shrink-0 max-md:size-5" aria-hidden />
+        {label(t.common.chatWhatsapp)}
+      </a>
+    </div>
   )
 }

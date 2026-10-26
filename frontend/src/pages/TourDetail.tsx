@@ -404,9 +404,8 @@ export default function TourDetail() {
         </aside>
       </div>
 
-      {/* Fixed booking bar below lg, where the sticky side panel is hidden; sits above the mobile contact bar. */}
-      <div className="h-20 lg:hidden" aria-hidden />
-      <div className="fixed inset-x-0 bottom-14 z-20 border-t border-line bg-white/95 px-4 py-3 shadow-[0_-6px_20px_rgba(15,40,70,0.1)] backdrop-blur md:right-24 md:bottom-4 md:left-4 md:rounded-2xl md:border lg:hidden print:hidden">
+      {/* Fixed booking bar below lg, where the sticky side panel is hidden; right padding keeps the button clear of the floating contact buttons. */}
+      <div className="fixed inset-x-0 bottom-0 z-20 border-t border-line bg-white/95 py-3 pr-[4.5rem] pl-4 md:pr-4 shadow-[0_-6px_20px_rgba(15,40,70,0.1)] backdrop-blur md:right-24 md:bottom-4 md:left-4 md:rounded-2xl md:border lg:hidden print:hidden">
         <div className="flex items-center justify-between gap-3">
           <PriceLabel tour={tour} />
           <ButtonLink to={to(`/booking/${tour.slug}`)} className="shrink-0">
@@ -427,6 +426,8 @@ export default function TourDetail() {
           </div>
         </section>
       )}
+      {/* Room for the fixed booking bar so it never hides the end of the page. */}
+      <div className="h-20 lg:hidden" aria-hidden />
     </>
   )
 }

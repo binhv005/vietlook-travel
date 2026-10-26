@@ -72,7 +72,8 @@
 @layer base {
   /* overflow-x: clip guards against any stray wide element causing sideways scroll on phones (does not break sticky). */
   html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; overflow-x: clip; }
-  body { @apply bg-white font-sans text-ink antialiased; }
+  /* html's clip is applied to the viewport, which mobile browsers can still pan; clipping body as well really cuts the overflow. */
+  body { @apply bg-white font-sans text-ink antialiased; overflow-x: clip; }
   /* Headings inherit colour so they stay legible on dark sections. */
   h1, h2, h3, h4 { text-wrap: balance; }
   :focus-visible { @apply outline-2 outline-offset-2 outline-brand-500; }
@@ -129,6 +130,12 @@
   [data-reveal='soft'][data-from='above']:not([data-revealed]) { transform: translateY(-14px); }
   /* List items slide in from the left, one after another. */
   [data-reveal='slide']:not([data-revealed]) { transform: translateX(-28px); }
+  /* Phones: sideways offsets push content past the screen edge, so everything rises instead. */
+  @media (width < 48rem) {
+    [data-reveal='left']:not([data-revealed]),
+    [data-reveal='right']:not([data-revealed]),
+    [data-reveal='slide']:not([data-revealed]) { transform: translateY(24px); }
+  }
   /* Card grids: flip up on a hinge, pop, or tilt in. */
   [data-reveal='flip'] { transform-origin: 50% 100%; }
   [data-reveal='flip']:not([data-revealed]) { transform: perspective(900px) rotateX(22deg) translateY(30px); }

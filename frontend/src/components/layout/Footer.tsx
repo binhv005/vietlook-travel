@@ -100,10 +100,10 @@ export default function Footer() {
           </p>
           <div className="flex items-center gap-4 md:justify-self-end">
             <span>{t.footer.follow}</span>
-            <a href={site.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="inline-flex size-9 items-center justify-center rounded-full bg-white/10 hover:bg-white/20">
+            <a href={site.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="inline-flex size-11 items-center justify-center rounded-full bg-brand-950/70 ring-1 ring-white/25 hover:bg-brand-950/90">
               <Facebook className="size-4" aria-hidden />
             </a>
-            <a href={site.whatsappHref} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="inline-flex size-9 items-center justify-center rounded-full bg-white/10 hover:bg-white/20">
+            <a href={site.whatsappHref} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="inline-flex size-11 items-center justify-center rounded-full bg-brand-950/70 ring-1 ring-white/25 hover:bg-brand-950/90">
               <WhatsAppIcon className="size-4" aria-hidden />
             </a>
           </div>

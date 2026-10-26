@@ -136,8 +136,8 @@ export default function TourExplorer({ scope, hide = [] }: Props) {
               {active > 0 && <span className="rounded-full bg-brand-600 px-2 text-xs text-white">{active}</span>}
             </button>
             <label className="flex flex-1 items-center gap-2 sm:flex-none">
-              <span className="text-sm whitespace-nowrap text-muted">{t.tours.sort}</span>
-              <select value={filters.sort} onChange={(e) => update({ sort: e.target.value as Sort })} className="field-input py-2">
+              <span className="sr-only text-sm whitespace-nowrap text-muted sm:not-sr-only">{t.tours.sort}</span>
+              <select value={filters.sort} onChange={(e) => update({ sort: e.target.value as Sort })} className="field-input min-w-0 py-2">
                 {SORTS.map((s) => (
                   <option key={s} value={s}>
                     {
